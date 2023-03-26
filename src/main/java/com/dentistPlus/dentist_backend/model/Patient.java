@@ -4,10 +4,12 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
-@Table(name = "Patient")
+@Table(name = "patient")
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,6 +21,15 @@ public class Patient {
     private LocalDate dateOfBirth;
     private String phoneNumber;
     private String email;
+
+    @OneToMany(
+            mappedBy = "patient",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Appointment> appointments = new ArrayList<>();
+
+    //TODO: Add photos, tooth and appointments
 
     public Patient() {
     }

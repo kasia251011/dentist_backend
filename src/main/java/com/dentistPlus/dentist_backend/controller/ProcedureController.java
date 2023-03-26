@@ -21,7 +21,7 @@ public class ProcedureController {
     }
 
     @PostMapping
-    public ResponseEntity<Procedure> addProcedure(@RequestBody final Procedure procedure) {
+    public ResponseEntity<Procedure> addProcedure(@RequestBody Procedure procedure) {
         Procedure newProcedure = procedureService.addProcedure(procedure);
         return new ResponseEntity<>(newProcedure, HttpStatus.OK);
     }
@@ -33,19 +33,19 @@ public class ProcedureController {
     }
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<Procedure> getProcedure(@PathVariable final Long id) {
+    public ResponseEntity<Procedure> getProcedure(@PathVariable Long id) {
         Procedure procedure = procedureService.getProcedure(id);
         return new ResponseEntity<>(procedure, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "{id}")
-    public ResponseEntity<Procedure> deleteProcedure(@PathVariable final Long id) {
+    public ResponseEntity<Procedure> deleteProcedure(@PathVariable Long id) {
         Procedure procedure = procedureService.deleteProcedure(id);
         return new ResponseEntity<>(procedure, HttpStatus.OK);
     }
 
     @PutMapping(value = "{id}")
-    public ResponseEntity<Procedure> getProcedure(@PathVariable final Long id, @RequestBody final Procedure procedure) {
+    public ResponseEntity<Procedure> getProcedure(@PathVariable Long id, @RequestBody Procedure procedure) {
         Procedure editedProcedure =  procedureService.editProcedure(id, procedure);
         return new ResponseEntity<>(editedProcedure, HttpStatus.OK);
     }

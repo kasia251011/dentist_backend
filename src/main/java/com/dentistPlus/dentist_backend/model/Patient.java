@@ -1,5 +1,6 @@
 package com.dentistPlus.dentist_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -27,6 +28,7 @@ public class Patient {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @JsonIgnore
     private List<Appointment> appointments = new ArrayList<>();
 
     //TODO: Add photos, tooth and appointments
@@ -41,5 +43,13 @@ public class Patient {
         this.setPesel(newPatient.getPesel());
         this.setPhoneNumber(newPatient.getPhoneNumber());
         this.setDateOfBirth(newPatient.getDateOfBirth());
+    }
+
+    public void addAppointment(Appointment appointment) {
+        appointments.add(appointment);
+    }
+
+    public void deleteAppointment(Appointment appointment) {
+        appointments.remove(appointment);
     }
 }

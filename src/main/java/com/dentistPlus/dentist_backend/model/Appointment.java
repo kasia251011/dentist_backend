@@ -1,5 +1,6 @@
 package com.dentistPlus.dentist_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,7 +15,7 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "patient_id") //FIXME: Returns null!
+    @JoinColumn(name = "patient_id")
     private Patient patient;
     @ManyToOne
     @JoinColumn(name = "procedure_id")

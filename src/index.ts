@@ -5,6 +5,9 @@ import mongoose from 'mongoose';
 import patientRoutes from './routes/Patient';
 import appointmentRoutes from './routes/Appointment';
 import procedureRoutes from './routes/Procedure';
+import cors from 'cors';
+import { initPatients } from './data/patients';
+import { initProcedures } from './data/procedures';
 
 dotenv.config()
 
@@ -17,12 +20,24 @@ database.on('error', (error: any) => {
     console.log(error)
 })
 
-database.once('connected', () => {
+database.once('connected', async () => {
+    try {
+        await mongoose.connection.db.dropDatabase();
+        console.log('Dropped all collections');
+      } catch (error) {
+        console.log(error);
+      }
     console.log('Database Connected');
+
+    initPatients();
+    console.log('Patients initialized');
+    initProcedures();
+    console.log('Procedures initialized');
 })
 
 const app = express();
 
+app.use(cors())
 app.use(express.json());
 app.use('/patients', patientRoutes);
 app.use('/appointments', appointmentRoutes);

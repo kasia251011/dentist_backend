@@ -10,8 +10,8 @@ export interface ProcedureModel extends Procedure, Document {};
 
 const procedureSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
-  surname: { type: Number, required: true },
-  avatar: { type: Number, required: false },
+  price: { type: Number, required: true },
+  duration: { type: Number, required: true },
 })
 
 export default mongoose.model<ProcedureModel>('Procedure', procedureSchema);

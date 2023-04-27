@@ -1,12 +1,11 @@
 import express from 'express';
-import { addAppointment, deleteAppointment, getAllAppointments, getAppointment, getAppointmentsByPatient } from '../controller/Appointment';
+import { addAppointment, deleteAppointment, getAppointmentsByDate, getAppointmentsByPatient } from '../controller/Appointment';
 
 const router = express.Router()
 
 router.post('', addAppointment)
-router.get('', getAllAppointments)
-router.get('/:id', getAppointment)
-router.get('/:patintId', getAppointmentsByPatient)
+router.get('', getAppointmentsByDate)
+router.get('', getAppointmentsByPatient)
 router.delete('/:id', deleteAppointment)
 
 export default router;

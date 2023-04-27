@@ -13,17 +13,10 @@ export const addAppointment = (req: Request, res: Response) => {
     .catch((error) => { res.status(500).json({ error }) })
 };
 
-export const getAllAppointments = (req: Request, res: Response) => {
+export const getAppointmentsByDate = (req: Request, res: Response) => {
 
-  return Appointment.find()
-    .then((appointment) => { res.status(201).json({ appointment }) })
-    .catch((error) => { res.status(500).json({ error }) })
-};
-
-export const getAppointment = (req: Request, res: Response) => {
-
-  return Appointment.findById(req.params.id)
-    .then((appointment) => { res.status(201).json({ appointment }) })
+  return Appointment.find({date: req.query.date})
+    .then((appointments) => { res.status(201).json(appointments) })
     .catch((error) => { res.status(500).json({ error }) })
 };
 
@@ -36,7 +29,7 @@ export const deleteAppointment = (req: Request, res: Response) => {
 
 export const getAppointmentsByPatient = (req: Request, res: Response) => {
 
-  return Appointment.find({patient: req.params.patientId})
+  return Appointment.find({patient: req.query.patientId})
     .then((appointment) => { res.status(201).json({ appointment }) })
     .catch((error) => { res.status(500).json({ error }) })
 };

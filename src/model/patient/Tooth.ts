@@ -3,7 +3,15 @@ import { Diagnosis, diagnosisSchema } from './Diagnosis';
 
 export interface Tooth {
   no: number;
-  state: 'HEALTHY' | 'ILL';
+  state:
+    | 'HEALTHY'
+    | 'CARIES'
+    | 'ARTIFICIAL'
+    | 'SEAL'
+    | 'CAVITY'
+    | 'MILK'
+    | 'EXTRACTED'
+    | 'TREATED';
   diagnoses: Diagnosis[];
 }
 

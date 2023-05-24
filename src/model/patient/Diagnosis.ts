@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 export interface Diagnosis {
   date: Date;
-  img: String;
+  src: String;
   description: string;
 }
 
@@ -10,7 +10,7 @@ export interface DiagnosisModel extends Diagnosis, Document {};
 
 export const diagnosisSchema = new mongoose.Schema({
   date: { type: Date, required: true },
-  img: { type: String, required: false },
+  src: { type: String, required: false },
   description: { type: String, required: false }
   
 })

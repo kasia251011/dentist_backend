@@ -13,7 +13,7 @@ const appointmentSchema = new mongoose.Schema({
   date: { type: String, required: true },
   time: { type: String, required: true },
   patientId: { type: Schema.Types.ObjectId, required: true, ref: 'Patient' },
-  procedures: { type: Schema.Types.ObjectId, required: true, ref: 'Procedure' }
+  procedureId: { type: Schema.Types.ObjectId, required: true, ref: 'Procedure' }
 })
 
 export default mongoose.model<AppointmentModel>('Appointment', appointmentSchema);

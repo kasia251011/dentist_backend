@@ -3,9 +3,11 @@ import {
   addPatient, 
   deletePatient, 
   getAllPatients, 
-  getPatient,
+  getPatient, 
+  getPatientDiagnosisTooth, 
   getPatientTeeth, 
-  pushToothDiagnosisByToothNo
+  pushToothDiagnosisByToothNo,
+  updateTooth
 } from '../controller/Patient';
 import multer from 'multer';
 
@@ -15,8 +17,9 @@ router.post('', addPatient)
 router.get('', getAllPatients)
 router.get('/:id', getPatient)
 router.get('/:id/teeth', getPatientTeeth)
-// router.get('/:diagnosisId', getPatientDiagnosisTooth)
+router.get('/:patientId/teeth/:toothNo/:index', getPatientDiagnosisTooth)
 router.delete('/:id', deletePatient)
 router.patch('/:patientId/teeth/:toothNo', pushToothDiagnosisByToothNo)
+router.put('/:patientId/teeth/:toothNo', updateTooth);
 
 export default router;

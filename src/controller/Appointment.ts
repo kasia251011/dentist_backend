@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import Appointment from '../model/Appointment';
 
 export const addAppointment = (req: Request, res: Response) => {
@@ -13,7 +13,8 @@ export const addAppointment = (req: Request, res: Response) => {
     .catch((error) => { res.status(500).json({ error }) })
 };
 
-export const getAppointmentsByDate = (req: Request, res: Response) => {
+export const getAppointmentsByDate = (req: Request, res: Response, next: NextFunction) => {
+  if(!req.query.date) return next();
 
   return Appointment.find({date: req.query.date})
     .then((appointments) => { res.status(201).json(appointments) })
@@ -27,9 +28,10 @@ export const deleteAppointment = (req: Request, res: Response) => {
     .catch((error) => { res.status(500).json({ error }) })
 };
 
-export const getAppointmentsByPatient = (req: Request, res: Response) => {
-
-  return Appointment.find({patient: req.query.patientId})
-    .then((appointment) => { res.status(201).json({ appointment }) })
+export const getAppointmentsByPatient = (req: Request, res: Response, next: NextFunction) => {
+  if(!req.query.patientId) return next();
+  
+  return Appointment.find({patientId: req.query.patientId})
+    .then((appointment) => { res.status(201).json( appointment ) })
     .catch((error) => { res.status(500).json({ error }) })
 };
